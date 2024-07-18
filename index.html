@@ -2,31 +2,101 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Zen+Old+Mincho&display=swap" rel="stylesheet">
+    <title>AviSchiffmann.com</title>
     <style>
-        h1, h2, h3 {
-            font-family: 'Roboto Condensed', sans-serif;
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        p {
-            font-family: 'Zen Old Mincho', serif;
+        h1 {
+            text-align: left;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        .faq-question {
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question-text {
+            flex-grow: 1;
+        }
+        .post-date {
+            font-weight: normal;
+            color: #888;
+            font-size: 0.9em;
+            margin-right: 10px;
+        }
+        .toggle {
+            font-size: 18px;
+            min-width: 20px;
+            text-align: center;
+        }
+        .faq-answer {
+            display: none;
+            margin-top: 10px;
+        }
+        .faq-answer.active {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <h1>Avi Schiffmann</h1>
-    <h2>Output:</h2>
-    <p>2020: <a href="https://ncov2019.live/">2020Protests.com</a></p>
-    <p>2020: <a href="https://ncov2019.live/">WhoTo.Vote</a></p>
-    <p>2020-Present: <a href="https://ncov2019.live/">nCoV2019.live</a></p>
-    <h2>Input:</h2>
-    <p><a href="mailto:avischiffmann@college.harvard.edu">avischiffmann@college.harvard.edu</a></p>
-    <p><a href="https://twitter.com/AviSchiffmann">@avischiffmann</a></p>
-    <h3>See you in the matrix ;) - Avi</h3>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/bVgZIhotpSs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <h1>AviSchiffmann.com</h1>
+    <div id="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="faq-question-text">tba</span>
+                <span class="post-date">July 18, 2024</span>
+                <span class="toggle">-</span>
+            </div>
+            <div class="faq-answer active">
+                tba
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="faq-question-text">tba</span>
+                <span class="post-date">July 17, 2024</span>
+                <span class="toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                tba
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const toggle = this.querySelector('.toggle');
+                    
+                    // Close all other answers
+                    document.querySelectorAll('.faq-answer').forEach(item => {
+                        if (item !== answer && item.classList.contains('active')) {
+                            item.classList.remove('active');
+                            item.previousElementSibling.querySelector('.toggle').textContent = '+';
+                        }
+                    });
+                    
+                    // Toggle the clicked answer
+                    answer.classList.toggle('active');
+                    toggle.textContent = answer.classList.contains('active') ? '-' : '+';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
